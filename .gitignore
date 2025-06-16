@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+.env.*.local
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Build outputs
+dist/
+build/
+*.log
+coverage/
+
+# System Files
+Thumbs.db
+desktop.ini
+
+# Project specific
+*.db
+*.sqlite3
+
+# Large files and archives
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Python
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
