@@ -1,5 +1,0 @@
-EU Health Data Privacy Playbook
-
-- GDPR requires explicit consent for processing health data.
-- Data minimization and security measures are mandatory.
-- Data subjects have the right to access and erase their data. 

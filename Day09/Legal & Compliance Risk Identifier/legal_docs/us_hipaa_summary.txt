@@ -1,5 +1,0 @@
-US HIPAA Summary
-
-- HIPAA sets standards for protecting sensitive patient health information.
-- Covered entities must implement administrative, physical, and technical safeguards.
-- Patients have rights over their health information, including access and corrections. 

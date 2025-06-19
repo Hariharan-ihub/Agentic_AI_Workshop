@@ -1,0 +1,31 @@
+# Core dependencies
+streamlit==1.32.2
+google-generativeai>=0.4.1,<0.5.0
+python-dotenv==1.0.1
+
+# Document processing
+python-docx==1.1.0
+PyPDF2==3.0.1
+
+# Data processing
+numpy==1.26.4
+pandas==2.2.1
+
+# Web scraping
+beautifulsoup4==4.12.3
+requests==2.31.0
+
+# LangChain and vector store
+langchain>=0.1.12
+langchain-google-genai>=0.0.11
+langchain-community>=0.0.28
+langchain-core>=0.1.32
+langchain-text-splitters>=0.0.1
+chromadb>=0.4.24
+pydantic>=2.6.4
+
+# ChromaDB dependencies
+pypika>=0.48.9
+sqlalchemy>=1.4.0
+hnswlib>=0.7.0
+sentence-transformers>=2.2.2 

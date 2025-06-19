@@ -1,0 +1,33 @@
+# Environment variables
+.env
+
+# Python virtual environment
+venv/
+env/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Vector store directory
+vector_store/
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Streamlit specific
+.streamlit/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/ 
