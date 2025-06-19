@@ -1,0 +1,5 @@
+GDPR Compliance Guide
+
+- Organizations must obtain explicit consent before collecting personal data.
+- Data controllers must implement appropriate technical and organizational measures.
+- Non-compliance can result in significant fines under EU law. 
