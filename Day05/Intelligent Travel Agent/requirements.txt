@@ -1,0 +1,9 @@
+langchain
+requests
+openai
+duckduckgo-search
+python-dotenv
+streamlit 
+transformers
+huggingface_hub
+torch
