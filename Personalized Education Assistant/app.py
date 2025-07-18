@@ -3,29 +3,19 @@ import json
 from typing import List, Dict, Any
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field
-from crewai import Agent, Task, Crew
 import google.generativeai as genai
 import requests
 import re
 import streamlit as st
-from langchain_google_genai import ChatGoogleGenerativeAI
 
 # Load environment variables
 load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
 SERPER_API_KEY = os.getenv("SERPER_API_KEY")
 
 # Configure Gemini
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-1.5-flash")
-
-# Initialize Gemini LLM for CrewAI
-gemini_llm = ChatGoogleGenerativeAI(
-    model="gemini-1.5-flash",
-    google_api_key=GEMINI_API_KEY,
-    temperature=0.7
-)
 
 # Helper Functions
 def search_learning_materials(topic: str) -> Dict[str, Any]:
@@ -162,92 +152,6 @@ Description: [Detailed description]
         return projects[:3]
     except Exception as e:
         return [{"title": f"Error generating projects: {str(e)}", "description": "Unable to generate project suggestions", "level": level}]
-
-# Agents without tools - they will use the functions directly
-learning_agent = Agent(
-    role="Learning Material Curator",
-    goal="Find the best learning resources for a given topic using web search",
-    backstory="""You are an expert researcher with years of experience in educational content curation. 
-    You excel at finding diverse learning materials including videos, articles, and practical exercises.
-    You have access to web search capabilities to find current and relevant learning materials.""",
-    llm=gemini_llm,
-    verbose=True
-)
-
-quiz_agent = Agent(
-    role="Quiz Master",
-    goal="Create effective assessment quizzes for learning topics",
-    backstory="""You are specialized in educational assessment and test creation. 
-    You create engaging multiple-choice questions that test understanding and promote learning.
-    You can generate high-quality quiz questions on any topic.""",
-    llm=gemini_llm,
-    verbose=True
-)
-
-project_agent = Agent(
-    role="Project Mentor",
-    goal="Suggest practical projects matching skill levels",
-    backstory="""You are experienced in curriculum development and project-based learning. 
-    You design hands-on projects that reinforce learning and build practical skills.
-    You can suggest projects appropriate for different skill levels.""",
-    llm=gemini_llm,
-    verbose=True
-)
-
-# Tasks with detailed descriptions
-def create_learning_task(topic: str):
-    return Task(
-        description=f"""Search for comprehensive learning materials about '{topic}'. 
-        Find videos, articles, and exercises that would help someone learn this topic effectively.
-        
-        Use web search to find:
-        1. Educational videos and tutorials
-        2. Articles and guides
-        3. Practice exercises and examples
-        
-        Return the results in a structured format with titles and links.""",
-        agent=learning_agent,
-        expected_output=f"""A comprehensive list of learning materials for {topic} including:
-        - Videos: List of educational videos with titles and links
-        - Articles: List of articles and guides with titles and links  
-        - Exercises: List of practice exercises with titles and links"""
-    )
-
-def create_quiz_task(topic: str):
-    return Task(
-        description=f"""Create a quiz about '{topic}' with 3 multiple-choice questions. 
-        Make sure the questions are educational and test important concepts.
-        
-        Each question should have:
-        - A clear question
-        - 4 multiple choice options (A, B, C, D)
-        - The correct answer indicated
-        
-        Focus on testing understanding rather than memorization.""",
-        agent=quiz_agent,
-        expected_output=f"""A set of 3 quality multiple-choice questions about {topic}, each with:
-        - Question text
-        - 4 answer options
-        - Correct answer identified"""
-    )
-
-def create_project_task(topic: str, level: str):
-    return Task(
-        description=f"""Suggest 3 practical project ideas about '{topic}' suitable for {level} level learners. 
-        Each project should have a clear title and detailed description.
-        
-        Consider the {level} skill level when designing projects:
-        - Beginner: Simple, guided projects with clear steps
-        - Intermediate: Projects requiring some independent thinking
-        - Advanced: Complex projects requiring expertise and creativity
-        
-        Each project should be practical and help reinforce learning.""",
-        agent=project_agent,
-        expected_output=f"""3 practical project ideas for {level} level learners about {topic}, each with:
-        - Project title
-        - Detailed description
-        - Why it's suitable for {level} level"""
-    )
 
 # Execution function
 def generate_learning_path(topic: str, level: str):
