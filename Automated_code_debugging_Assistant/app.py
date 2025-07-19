@@ -9,7 +9,7 @@ import ast
 # No chromadb, no CodeInterpreterTool, no ONNX runtime
 
 # Set API keys (replace with yours)
-os.environ["GOOGLE_API_KEY"] = "AIzaSyAZtErluhP9-PX-Wd29D_QDWRG7V3xj6io"
+os.environ["GOOGLE_API_KEY"] = "AIzaSyDN1EtiR1ef6LG4xjtSiiDPNPkkJMh0auQ"
 
 # Custom Python Analyzer (No ONNX)
 def analyze_python_code(code: str) -> str:
